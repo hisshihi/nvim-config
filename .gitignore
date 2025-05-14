@@ -1,0 +1,41 @@
+# Ignore swap, backup, and undo files
+**/*.swp
+**/*.swo
+**/*.bak
+**/*.tmp
+**/*.undo
+
+# Ignore built files/directories
+build/
+dist/
+target/
+out/
+
+# Ignore cache directories
+.cache/
+cache/
+
+# Ignore installed plugins managed by LazyVim
+# LazyVim usually installs into a directory like 'lazy' or 'pack/packer'
+# Adjust the path if your plugins are installed elsewhere
+pack/*/start/
+pack/*/opt/
+lazy/
+bundle/ # If you used other managers before
+
+# Ignore LSP logs and other temporary files
+lsp.log
+nvim.log
+*.log
+
+# Ignore environments
+.venv/
+venv/
+env/
+
+# Ignore OS specific files
+.DS_Store
+Thumbs.db
+
+# Ignore compiled Lua files (optional, but often helpful)
+**/*.luac
