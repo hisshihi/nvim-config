@@ -1,20 +1,8 @@
+-- lua/plugins/rose-pine.lua
 return {
-  { "shaunsingh/nord.nvim" },
-  { "ellisonleao/gruvbox.nvim" },
-  { "folke/tokyonight.nvim" },
-  { "catppuccin/nvim", name = "catppuccin" },
-  { "lunarvim/darkplus.nvim" },
-  { "EdenEast/nightfox.nvim" },
-  { "rose-pine/neovim", name = "rose-pine" },
-  { "rebelot/kanagawa.nvim" },
-  { "sainnhe/everforest" },
-  { "sainnhe/sonokai" },
-  { "navarasu/onedark.nvim" },
-  { "Mofiqul/dracula.nvim" },
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "gruvbox",
-    },
-  },
+  "rose-pine/neovim",
+  name = "rose-pine",
+  config = function()
+    vim.cmd("colorscheme rose-pine-moon")
+  end,
 }
