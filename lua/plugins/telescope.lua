@@ -1,25 +1,37 @@
 return {
-  "nvim-telescope/telescope.nvim",
-  keys = {
-      -- add a keymap to browse plugin files
-      -- stylua: ignore
-      {
-        "<leader>fq",
-        function() require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root }) end,
-        desc = "Find Plugin File",
-      },
-  },
-  -- change some options
-  opts = {
-    defaults = {
-      layout_strategy = "horizontal",
-      layout_config = { prompt_position = "top" },
-      sorting_strategy = "ascending",
-      winblend = 0,
-      find_files = {
-        hidden = true,
-        find_command = { "fd", "--type", "f", "--hidden", "--exclude", ".git" },
-      },
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-fzf-native.nvim" },
+    build = "make", -- для fzf-native
+    cmd = "Telescope",
+    keys = {
+      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
+      { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
+      { "<leader>fs", "<cmd>Telescope grep_string<cr>", desc = "Grep string" },
     },
+    config = function()
+      require("telescope").setup({
+        defaults = {
+          prompt_prefix = " ",
+          vimgrep_arguments = {
+            "rg",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+          },
+          path_display = { "smart" },
+        },
+        pickers = {
+          live_grep = { only_sort_text = true },
+        },
+        extensions = {
+          fzf = { fuzzy = true, override_generic_sorter = true, override_file_sorter = true },
+        },
+      })
+      require("telescope").load_extension("fzf")
+    end,
   },
 }
